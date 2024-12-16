@@ -21,12 +21,18 @@ class DetailFactory extends Factory
      */
     public function definition(): array
     {
+        $rooms = [
+            0 => [
+                'x' => 4,
+                'y' => 4
+            ]
+        ];
         return [
-            // 'rooms' => '{}',
-            // 'bathrooms' => '{}',
-            // 'halls' => '{}',
-            'floors' => $this->faker->word(),
-            // 'kitchen' => '{}',
+            'rooms' => $rooms,
+            'bathrooms' => $rooms,
+            'halls' => $rooms,
+            'floors' => $this->faker->numberBetween(1,8),
+            'kitchen' => $rooms,
             'house_id' => House::factory(),
         ];
     }

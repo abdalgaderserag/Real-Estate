@@ -16,7 +16,7 @@ return new class extends Migration
             $table->json('rooms')->nullable();
             $table->json('bathrooms')->nullable();
             $table->json('halls')->nullable();
-            $table->string('floors');
+            $table->integer('floors');
             $table->json('kitchen')->nullable();
             $table->foreignId('house_id');
             $table->timestamps();
