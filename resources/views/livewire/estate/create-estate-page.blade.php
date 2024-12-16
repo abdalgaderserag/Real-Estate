@@ -1,6 +1,28 @@
 <div>
     <input wire:model="form.title" type="text" name="title"><br><br>
+
     <textarea wire:model="form.description" name="description" cols="30" rows="10"></textarea><br><br>
+
+    <input
+    accept="image/jpg, image/jpeg, image/png"
+    wire:model="form.images.{{ count($form['images']) }}.image"
+    wire:loading.attr="disabled"
+    wire:target="form.images.{{ count($form['images']) }}.image"
+    type="file"
+    name="image">
+    <span wire:loading wire:target="form.images.{{ count($form['images']) }}.image">
+        uploading...
+    </span>
+    <br><br>
+
+    @forelse ($form['images'] as $index => $image)
+        <img src="{{ $image["image"]->temporaryUrl() }}">
+        <button wire:click="deleteImage({{ $index }})">delete</button><br><br>
+    @empty
+
+    @endforelse
+
+
     @for ($number_rooms = 0; $number_rooms < $r; $number_rooms++)
         <input wire:model="form.rooms[{{ $number_rooms }}].x" type="text" placeholder="X"> * <input wire:model="form.rooms[{{ $number_rooms }}].y" type="text" placeholder="Y"><br>
     @endfor

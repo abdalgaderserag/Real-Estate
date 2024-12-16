@@ -3,12 +3,17 @@
 namespace App\Livewire\Estate;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateEstatePage extends Component
 {
+    use WithFileUploads;
     public $form = [
         "title" => '',
         "description" => '',
+
+        "images" => [],
+
         "rooms" => [
             0 => [
                 'x' => 0,
@@ -51,6 +56,10 @@ class CreateEstatePage extends Component
 
     public function saveEstate() {
         dd($this->form);
+    }
+
+    public function deleteImage($index) {
+        array_splice($this->form["images"],$index,1);
     }
 
     public function addRoom(){
