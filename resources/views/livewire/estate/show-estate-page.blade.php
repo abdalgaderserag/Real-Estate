@@ -1,4 +1,7 @@
-<div class="p-6 bg-white rounded-lg shadow-md">
+<div class="flex w-full my-10">
+    <div class="w-1/12"></div>
+
+<div class="w-11/12 p-6 bg-white rounded-lg shadow-md">
     <h1 class="text-2xl font-bold">{{ $estate->title }}</h1>
     <p class="mt-2 text-gray-600">{{ $estate->description }}</p>
 
@@ -29,4 +32,6 @@
     </div>
 
     <p class="mt-4">Type: {{ $estate->type }}</p>
+</div>
+<div class="w-1/12"></div>
 </div>

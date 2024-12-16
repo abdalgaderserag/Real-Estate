@@ -38,7 +38,7 @@ class CreateEstatePage extends Component
                 'y' => 0
             ]
         ],
-        "floors" => 1,
+        "floors" => '',
         "rent" => false,
         "price" => '',
         "type" => '',
