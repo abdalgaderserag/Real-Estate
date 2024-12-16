@@ -23,7 +23,7 @@ class HouseFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'description' => $this->faker->text(),
-            'images' => '{}',
+            // 'images' => '{}',
             'rent' => $this->faker->word(),
             'price' => $this->faker->randomFloat(0, 0, 9999999999.),
             'type' => $this->faker->randomElement(["apartment","house","villa","homestead","building"]),

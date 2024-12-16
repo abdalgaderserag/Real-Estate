@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->json('rooms');
-            $table->json('bathrooms');
-            $table->json('halls');
+            $table->json('rooms')->nullable();
+            $table->json('bathrooms')->nullable();
+            $table->json('halls')->nullable();
             $table->string('floors');
-            $table->json('kitchen');
+            $table->json('kitchen')->nullable();
             $table->foreignId('house_id');
             $table->timestamps();
         });

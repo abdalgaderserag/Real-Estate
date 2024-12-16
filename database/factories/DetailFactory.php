@@ -22,11 +22,11 @@ class DetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'rooms' => '{}',
-            'bathrooms' => '{}',
-            'halls' => '{}',
+            // 'rooms' => '{}',
+            // 'bathrooms' => '{}',
+            // 'halls' => '{}',
             'floors' => $this->faker->word(),
-            'kitchen' => '{}',
+            // 'kitchen' => '{}',
             'house_id' => House::factory(),
         ];
     }

@@ -31,8 +31,8 @@ class House extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'images' => 'array',
-        'price' => 'decimal',
+        // 'images' => 'array',
+        // 'price' => 'decimal',
     ];
 
     public function detail(): HasOne
