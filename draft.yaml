@@ -1,0 +1,18 @@
+models:
+  House:
+    title: string:255
+    description: longtext
+    images: json
+    rent: booleans
+    price: decimal 8,2
+    type: enum:apartment,house,villa,homestead,building
+    relationships:
+      hasOne: Detail
+  Detail:
+    rooms: json
+    bathrooms: json
+    halls: json
+    floors: number
+    kitchen: json
+    relationships:
+      belongsTo: House

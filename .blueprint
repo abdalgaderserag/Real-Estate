@@ -1,0 +1,10 @@
+created:
+    - database/factories/HouseFactory.php
+    - database/factories/DetailFactory.php
+    - database/migrations/2024_12_16_094453_create_houses_table.php
+    - database/migrations/2024_12_16_094454_create_details_table.php
+    - app/Models/House.php
+    - app/Models/Detail.php
+models:
+    House: { title: 'string:255', description: longtext, images: json, rent: booleans, price: 'decimal 8,2', type: 'enum:apartment,house,villa,homestead,building', relationships: { hasOne: Detail } }
+    Detail: { rooms: json, bathrooms: json, halls: json, floors: number, kitchen: json, relationships: { belongsTo: House } }
