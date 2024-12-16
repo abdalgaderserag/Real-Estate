@@ -1,62 +1,109 @@
-<div>
-    <input wire:model="form.title" type="text" name="title"><br><br>
+<div class="p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Add Real Estate</h1>
 
-    <textarea wire:model="form.description" name="description" cols="30" rows="10"></textarea><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Title</label>
+        <input wire:model="form.title" type="text" name="title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200" placeholder="Enter property title">
+    </div>
 
-    <input
-    accept="image/jpg, image/jpeg, image/png"
-    wire:model="form.images.{{ count($form['images']) }}.image"
-    wire:loading.attr="disabled"
-    wire:target="form.images.{{ count($form['images']) }}.image"
-    type="file"
-    name="image">
-    <span wire:loading wire:target="form.images.{{ count($form['images']) }}.image">
-        uploading...
-    </span>
-    <br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Description</label>
+        <textarea wire:model="form.description" name="description" cols="30" rows="10" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200" placeholder="Enter property description"></textarea>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700">Upload Images</label>
+        <input accept="image/jpg, image/jpeg, image/png"
+            wire:model="form.images.{{ count($form['images']) }}.image"
+            wire:loading.attr="disabled"
+            wire:target="form.images.{{ count($form['images']) }}.image"
+            type="file"
+            name="image"
+            class="mt-1">
+        <span wire:loading wire:target="form.images.{{ count($form['images']) }}.image" class="text-blue-500">
+            uploading...
+        </span>
+    </div>
 
     @forelse ($form['images'] as $index => $image)
-        <img src="{{ $image["image"]->temporaryUrl() }}">
-        <button wire:click="deleteImage({{ $index }})">delete</button><br><br>
+        <div class="mb-4">
+            <img src="{{ $image['image']->temporaryUrl() }}" class="w-32 h-32 object-cover rounded-lg">
+            <button wire:click="deleteImage({{ $index }})" class="mt-2 text-red-500">delete</button>
+        </div>
     @empty
-
+        <p class="text-gray-500">No images uploaded</p>
     @endforelse
 
+    <div class="mb-4">
+        <label class="block text-gray-700">Rooms</label>
+        @for ($number_rooms = 0; $number_rooms < $r; $number_rooms++)
+            <div class="flex mb-2">
+                <input wire:model="form.rooms[{{ $number_rooms }}].x" type="text" placeholder="X" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2 mr-2">
+                <input wire:model="form.rooms[{{ $number_rooms }}].y" type="text" placeholder="Y" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2">
+            </div>
+        @endfor
+        <button wire:click="addRoom" class="text-blue-500">add room</button>
+    </div>
 
-    @for ($number_rooms = 0; $number_rooms < $r; $number_rooms++)
-        <input wire:model="form.rooms[{{ $number_rooms }}].x" type="text" placeholder="X"> * <input wire:model="form.rooms[{{ $number_rooms }}].y" type="text" placeholder="Y"><br>
-    @endfor
-    <button wire:click="addRoom">add room</button><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Bathrooms</label>
+        @for ($number_bathrooms = 0; $number_bathrooms < $b; $number_bathrooms++)
+            <div class="flex mb-2">
+                <input wire:model="form.bathrooms[{{ $number_bathrooms }}].x" type="text" placeholder="X" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2 mr-2">
+                <input wire:model="form.bathrooms[{{ $number_bathrooms }}].y" type="text" placeholder="Y" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2">
+            </div>
+        @endfor
+        <button wire:click="addBathroom" class="text-blue-500">add bathroom</button>
+    </div>
 
-    @for ($number_bathrooms = 0; $number_bathrooms < $b; $number_bathrooms++)
-        <input wire:model="form.bathrooms[{{ $number_bathrooms }}].x" type="text" placeholder="X"> * <input wire:model="form.bathrooms[{{ $number_bathrooms }}].y" type="text" placeholder="Y"><br>
-    @endfor
-    <button wire:click="addBathroom">add bathroom</button><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Halls</label>
+        @for ($number_halls = 0; $number_halls < $h; $number_halls++)
+            <div class="flex mb-2">
+                <input wire:model="form.halls[{{ $number_halls }}].x" type="text" placeholder="X" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2 mr-2">
+                <input wire:model="form.halls[{{ $number_halls }}].y" type="text" placeholder="Y" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2">
+            </div>
+        @endfor
+        <button wire:click="addHall" class="text-blue-500">add hall</button>
+    </div>
 
-    @for ($number_halls = 0; $number_halls < $h; $number_halls++)
-        <input wire:model="form.halls[{{ $number_halls }}].x" type="text" placeholder="X"> * <input wire:model="form.halls[{{ $number_halls }}].y" type="text" placeholder="Y"><br>
-    @endfor
-    <button wire:click="addHall">add hall</button><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Kitchens</label>
+        @for ($number_kitchens = 0; $number_kitchens < $k; $number_kitchens++)
+            <div class="flex mb-2">
+                <input wire:model="form.kitchens[{{ $number_kitchens }}].x" type="text" placeholder="X" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2 mr-2">
+                <input wire:model="form.kitchens[{{ $number_kitchens }}].y" type="text" placeholder="Y" class="border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 w-1/2">
+            </div>
+        @endfor
+        <button wire:click="addKitchen" class="text-blue-500">add kitchen</button>
+    </div>
 
-    @for ($number_kitchens = 0; $number_kitchens < $k; $number_kitchens++)
-        <input wire:model="form.kitchens[{{ $number_kitchens }}].x" type="text" placeholder="X"> * <input wire:model="form.kitchens[{{ $number_kitchens }}].y" type="text" placeholder="Y"><br>
-    @endfor
-    <button wire:click="addKitchen">add kitchen</button><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Number of Floors</label>
+        <input wire:model="form.floors" type="number" placeholder="Number of floors" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
+    </div>
 
-    <input wire:model="form.floors" type="number" placeholder="number of floors"><br><br>
+    <div class="mb-4">
+        <input wire:model.live="form.rent" type="checkbox" name="rent" id="rent" class="mr-2">
+        <label for="rent" class="text-gray-700">This property is for rent</label>
+    </div>
 
-    <input wire:model.live="form.rent" type="checkbox" name="rent"><label for="rent"> this property is for rent</label><br><br>
-    @if ($form["rent"])
-        <input wire:model="form.price" type="number" placeholder="price per month"><br><br>
-    @else
-        <input wire:model="form.price" type="number" placeholder="price"><br><br>
-    @endif
+    <div class="mb-4">
+        @if ($form['rent'])
+            <input wire:model="form.price" type="number" placeholder="Price per month" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
+        @else
+            <input wire:model="form.price" type="number" placeholder="Price" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
+        @endif
+    </div>
 
-    <select wire:model="form.type">
-        @foreach (config('estate.type') as $type)
-            <option>{{ $type }}</option>
-        @endforeach
-    </select><br><br>
+    <div class="mb-4">
+        <label class="block text-gray-700">Property Type</label>
+        <select wire:model="form.type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200">
+            @foreach (config('estate.type') as $type)
+                <option>{{ $type }}</option>
+            @endforeach
+        </select>
+    </div>
 
-    <button wire:click="saveEstate">Add Real Estate</button>
+    <button wire:click="saveEstate" class="w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600">Add Real Estate</button>
 </div>
