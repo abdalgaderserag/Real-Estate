@@ -20,12 +20,21 @@ class HouseFactory extends Factory
      */
     public function definition(): array
     {
+        $images = [
+            'images\atom.png',
+            'images\ink.png'
+        ];
+        $rent = $this->faker->boolean();
+        $multiply = 1000;
+        if (!$rent) {
+            $multiply = 1000000;
+        }
         return [
             'title' => $this->faker->sentence(4),
             'description' => $this->faker->text(),
-            // 'images' => '{}',
-            'rent' => $this->faker->word(),
-            'price' => $this->faker->randomFloat(0, 0, 9999999999.),
+            'images' => $images,
+            'rent' => $rent,
+            'price' => $this->faker->numberBetween(2,25) * $multiply,
             'type' => $this->faker->randomElement(["apartment","house","villa","homestead","building"]),
         ];
     }

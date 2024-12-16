@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Detail;
 use App\Models\House;
+use Nette\Utils\Arrays;
 
 class DetailFactory extends Factory
 {
@@ -21,19 +22,24 @@ class DetailFactory extends Factory
      */
     public function definition(): array
     {
-        $rooms = [
-            0 => [
-                'x' => 4,
-                'y' => 4
-            ]
-        ];
         return [
-            'rooms' => $rooms,
-            'bathrooms' => $rooms,
-            'halls' => $rooms,
-            'floors' => $this->faker->numberBetween(1,8),
-            'kitchen' => $rooms,
+            'rooms' => $this->getDetails(1,8),
+            'bathrooms' => $this->getDetails(1,3),
+            'halls' => $this->getDetails(0,3),
+            'floors' => $this->faker->numberBetween(0,8),
+            'kitchen' => $this->getDetails(1,2),
             'house_id' => House::factory(),
         ];
+    }
+
+    private function getDetails($min, $max){
+        $temp = [];
+        for ($i=0; $i < $this->faker->numberBetween($min, $max); $i++) {
+            array_push($temp,[
+                "x" => $this->faker->numberBetween(3,8),
+                "y" => $this->faker->numberBetween(3,8),
+            ]);
+        }
+        return $temp;
     }
 }

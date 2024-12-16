@@ -31,7 +31,7 @@ class House extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        // 'images' => 'array',
+        'images' => 'array',
         // 'price' => 'decimal',
     ];
 

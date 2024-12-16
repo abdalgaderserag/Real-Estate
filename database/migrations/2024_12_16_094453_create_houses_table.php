@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->longText('description');
-            $table->json('images')->nullable();
+            $table->json('images');
             $table->string('rent');
             $table->decimal('price');
-            $table->enum('type', ["apartment","house","villa","homestead","building"]);
+            $table->enum('type', config('estate.type'));
             $table->timestamps();
         });
     }
