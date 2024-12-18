@@ -3,22 +3,86 @@
 namespace App\Livewire;
 
 use App\Models\House;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class HomePage extends Component
 {
 
-    public $search;
+    public $filter=[
+        "search" => '',
+        "type" => [
+            'all' => false
+        ],
+        'min' => '',
+        'max' => '',
+        'rent' => false,
+        'rooms' => 1,
+        'bathrooms' => 1,
+        'kitchens' => 1,
+        'floors' => 1,
+    ];
 
-    public $estates;
 
+
+    #[Computed()]
+    public function estates(){
+        $estates = House::all();
+        $tag = false;
+        if($this->filter['type']['all'] != $this->filter['type'][$this->types()[0]])
+        {
+        $tag = true;
+        }
+        else{
+            for ($i=0; $i < count($this->types()) - 1; $i++) {
+                if ($this->filter['type'][$this->types()[$i]] != $this->filter['type'][$this->types()[$i+1]]) {
+                    $tag = true;
+                }
+            }
+        }
+
+
+        if($tag){
+            $tags = [];
+            foreach ($this->filter['type'] as $t => $val) {
+                if($val)
+                    array_push($tags,$t);
+            }
+            $estates = $estates->filter(function(House $e) use ($tags) {
+                for ($i=0; $i < count($tags); $i++) {
+                    if ($e->type == $tags[$i]) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }
+        return $estates;
+    }
 
     public function mount(){
-        $this->estates = House::all();
+        foreach($this->types() as $type){
+            $this->filter['type'][$type] = false;
+        }
+    }
+
+
+    protected function types() {
+        return config('estate.type');
     }
 
     public function render()
     {
         return view('livewire.home-page');
+    }
+
+    public function decrease($type){
+        if($this->filter[$type] > 1){
+            $this->filter[$type]--;
+        }
+    }
+
+    public function increase($type){
+        $this->filter[$type]++;
     }
 }
