@@ -57,6 +57,44 @@ class HomePage extends Component
                 return false;
             });
         }
+
+        if ($this->filter['min'] != '') {
+            $estates = $estates->filter(function(House $e){
+                return $e->price >= $this->filter['min'];
+            });
+        }
+
+        if ($this->filter['max'] != '') {
+            $estates = $estates->filter(function(House $e){
+                return $e->price <= $this->filter['max'];
+            });
+        }
+
+        if($this->filter['rent']){
+            $estates = $estates->filter(function(House $e){
+                if ($this->filter['rent']) {
+                    return $e->rent;
+                }
+                return false;
+            });
+        }
+
+        $estates = $estates->filter(function(House $e){
+            return count($e->detail->rooms) >= $this->filter['rooms'];
+        });
+
+        $estates = $estates->filter(function(House $e){
+            return count($e->detail->bathrooms) >= $this->filter['bathrooms'];
+        });
+
+        $estates = $estates->filter(function(House $e){
+            return count($e->detail->kitchen) >= $this->filter['kitchens'];
+        });
+
+        $estates = $estates->filter(function(House $e){
+            return $e->detail->floors >= $this->filter['floors'];
+        });
+
         return $estates;
     }
 
