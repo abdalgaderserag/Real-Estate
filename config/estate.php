@@ -8,4 +8,5 @@ return [
         "homestead",
         "building"
     ],
+    "sign" => "$",
 ];

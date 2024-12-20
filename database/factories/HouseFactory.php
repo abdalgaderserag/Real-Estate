@@ -21,8 +21,8 @@ class HouseFactory extends Factory
     public function definition(): array
     {
         $images = [
-            'images\atom.png',
-            'images\ink.png'
+            'images/estate.jpeg',
+            'images/estate.jpeg'
         ];
         $rent = $this->faker->boolean();
         $multiply = 1000;
