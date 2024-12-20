@@ -41,11 +41,11 @@
 
         <nav class="flex justify-between items-center bg-orange-500 text-white text-lg">
             <div class="flex-auto ml-3">
-                <img class="w-20" src="{{ url('/images/ink.png') }}">
+                <img onclick="window.location.href='{{ route('estate.index') }}'" class="w-20 cursor-pointer" src="{{ url('/images/ink.png') }}">
             </div>
             <div class="flex items-center">
-                <div class="p-1 pb-2 px-6 mx-8 border-2 border-white rounded-lg hover:bg-orange-400 hover:cursor-pointer">+ Add Property</div>
-                <div class="px-3 hover:cursor-pointer">name</div>
+                <div onclick="window.location.href='{{ route('estate.create') }}'" class="p-1 pb-2 px-6 mx-8 border-2 border-white rounded-lg hover:bg-orange-400 hover:cursor-pointer">+ Add Property</div>
+                <div onclick="window.location.href='{{ route('profile.show') }}'" class="px-3 hover:cursor-pointer">name</div>
             </div>
         </nav>
 
