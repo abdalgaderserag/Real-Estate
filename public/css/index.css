@@ -1,6 +1,7 @@
 .bg-p{
     background-color: rgb(12, 151, 107);
 }
+
 .bo-p{
     border-color: rgb(12, 151, 107);
 }
@@ -8,17 +9,21 @@
     color: rgb(12, 151, 107);
 }
 
+.bg-orange-500{
+    background-color: rgb(12, 151, 107);
+}
+
 body{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin: 0;
+    background-color: #f3f3f3;
     color: rgb(37, 37, 37);
 }
 header{
     height: 100vh;
-}
-nav img{
-    margin: 10px 0 -3px 1%;
-    height: 50px;
+    background-color: #fff;
+    background-position: center;
+    background-size: cover;
 }
 
 
@@ -31,8 +36,8 @@ nav img{
     margin: -6% 0 0 0;
 }
 
-.header h1{
-    font-size: 3rem;
+.header img{
+    margin-bottom: 58px;
 }
 .search{
     width: 100%;
@@ -46,6 +51,8 @@ nav img{
 }
 .search input{
     width: 42%;
+    padding: 8px 16px;
+    font-size: 1.1rem;
 }
 .search button{
     color: #fff;
@@ -54,4 +61,162 @@ nav img{
 
 .search button:hover{
     background-color: rgb(5, 128, 89);
+}
+
+
+.houses{
+}
+
+
+.houses-headline{
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 24vh 0 6vh 0;
+}
+
+
+.houses-card{
+    display: flex;
+    flex-direction: column;
+    padding: 0 14%;
+    justify-content: space-between;
+}
+
+.discover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.discover hr{
+    width: 40%;
+    border-top: 2px solid rgb(5, 128, 89);
+}
+.discover:last-child{
+    justify-items: center;
+}
+.discover .d-button{
+    background-color: #f3f3f3;
+    width: fit-content;
+    padding: 4px 21px;
+    border-radius: 1000px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid rgb(5, 128, 89);
+}
+
+
+.features{
+    display: flex;
+    font-size: 1.2rem;
+    background-color: #fff;
+    margin-top: 24px;
+}
+
+.feat-left{
+    width: 40%;
+    font-size: 1.5rem;
+    display: flex;
+}
+
+.feat-left div:first-child{
+    width: 52%;
+}
+
+.feat-left img{
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+
+.feat-right{
+    width: 60%;
+    padding: 11vh 0 0 7%;
+}
+
+.feat-right h2{
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.feat-right h3{
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.feature{
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.feature img{
+    height: 32px;
+    margin: 7px 10px 0 0;
+}
+
+.about{
+    display: flex;
+    background-color: #fff;
+    margin: 1px 0 0 0;
+    font-size: 1.2rem;
+    color: #707070;
+}
+.about h3{
+    font-size: 2rem;
+    text-decoration: underline;
+    margin-bottom: 34px;
+}
+.about img{
+    width: 48%;
+}
+.about div{
+    width: 75.5%;
+    display: flex;
+}
+.about div:last-child{
+    width: 24.5%;
+}
+
+.about-body{
+    flex-direction: column;
+}
+
+.site-link{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    background-color: #fff;
+    padding: 32px 0;
+    margin: 1px 0;
+}
+
+.social{
+    display: flex;
+    padding: 8px 12px;
+    justify-content: space-around;
+    color: #707070;
+    margin-bottom: 24px;
+}
+
+.social a{
+    margin: 0 1%;
+}
+
+ul li h3{
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+ul li{
+    margin-bottom: 8px;
+}
+
+footer{
+    color: #fff;
+    padding: 8px;
+    text-align: center;
 }

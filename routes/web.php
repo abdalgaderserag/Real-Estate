@@ -5,11 +5,13 @@ use App\Livewire\Estate\EditEstatePage;
 use App\Livewire\Estate\ShowEstatePage;
 use App\Livewire\HomePage;
 use App\Livewire\LandingPage;
+use App\Models\House;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function (){
-    return view('landing-page');
+    $estate = House::first();
+    return view('landing-page')->with(['estate'=>$estate]);
 })->name('home');
 Route::get('/dash', HomePage::class)->name('estate.index');
 Route::get('/estate/{house}', ShowEstatePage::class)->name('estate.show');
