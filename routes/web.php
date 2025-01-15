@@ -8,8 +8,10 @@ use App\Livewire\LandingPage;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', LandingPage::class)->name('index');
-Route::get('/dashboard', HomePage::class)->name('estate.index');
+Route::get('/', function (){
+    return view('landing-page');
+})->name('home');
+Route::get('/dash', HomePage::class)->name('estate.index');
 Route::get('/estate/{house}', ShowEstatePage::class)->name('estate.show');
 Route::get('/create/estate', CreateEstatePage::class)->name('estate.create');
 Route::get('/estate/{house}/edit', EditEstatePage::class)->name('estate.edit');
